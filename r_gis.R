@@ -226,9 +226,7 @@ plot(tmin_se,col = rev(rainbow(100)),addfun = map(us, add= T))
 #============================================================================
 
 # There are lots of ways to explore maps interactively, one way that's fun
-# is to share maps in Google:
-
-# To view in Google Earth:
+# is to share maps via Google Earth:
 
 KML(tmin_se, 'tmin_se.kml', col = rev(rainbow(100)), colNA=NA)
 
