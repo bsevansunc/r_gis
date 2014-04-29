@@ -237,7 +237,7 @@ KML(tmin_se, 'tmin_se.kml', col = rev(rainbow(100)), colNA=NA)
 
 # This is, of course, just a few basic GIS tasks and really represents the
 # tip-of-the-iceburg of what R can do as a GIS.
-# See the website following website to see the variety of packages and
+# Check out the following website to see the variety of packages and
 # analyses available: http://cran.r-project.org/web/views/Spatial.html
 
 
