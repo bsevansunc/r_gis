@@ -222,6 +222,26 @@ plot(tmin_se,col = rev(rainbow(100)),addfun = map(us, add= T))
 
 
 #----------------------------------------------------------------------------
+# A big advantage: Stats and GIS in one place!
+#============================================================================
+
+# A silly example, but ...
+
+mod = lm(tmin~y, data = pts)
+
+summary(mod)
+
+plot(tmin~y,data = pts,
+	pch = 19, cex = .75, col = 'gray50', bty = 'l', 
+	cex.lab = 1.25, cex.main = 2,
+	ylab = expression('Minimimum Temperature ( '*degree*'C)'),
+	xlab = 'Latitude',
+	main = 'Minimum temperatures in the
+	Southeastern US, 4/17/2014')
+
+abline(mod, lwd = 2)
+
+#----------------------------------------------------------------------------
 # But you want to view the file more interactively?
 #============================================================================
 
