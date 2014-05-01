@@ -70,6 +70,28 @@ tmin = raster(tmin[1])
 crs(tmin) = "+proj=longlat +datum=WGS84"
 
 #----------------------------------------------------------------------------
+# Plotting the temperature raster
+#============================================================================
+# Note: If you aren't using RStudio, be sure to turn on the plot history
+
+plot(tmin, ext = extent(tmin))
+
+# Note: Does your plot have lots of white space?
+# Just reshape your plot window!
+
+# Add the states file as an overlay:
+
+map(us, add = T)
+
+# Change the color scheme:
+
+plot(tmin, ext = extent(tmin), col = terrain.colors(255))
+
+plot(tmin, ext = extent(tmin), col = rev(rainbow(100)), addfun = map(us, add=T))
+
+# Note in the above: I added the states layer to the map in one function
+
+#----------------------------------------------------------------------------
 # Exploring the temperature raster
 #============================================================================
 
@@ -97,29 +119,9 @@ hist(tmin, maxpixels = ncell(tmin), freq = F,
 	cex.lab = 1.5, cex.main = 2,
 	col = rev(rainbow(19)))
 
-# Add a density lines to the plot
+# Add a density line to the plot
 
 lines(density(tmin, plot = F), lwd = 3)
-
-# Plot the raster:
-# Note: If you aren't using RStudio, be sure to turn on the plot history
-
-plot(tmin, ext = extent(tmin))
-
-# Note: Does your plot have lots of white space?
-# Just reshape your plot window!
-
-# Add the states file as an overlay:
-
-map(us, add = T)
-
-# Change the color scheme:
-
-plot(tmin, ext = extent(tmin), col = terrain.colors(255))
-
-plot(tmin, ext = extent(tmin), col = rev(rainbow(100)), addfun = map(us, add=T))
-
-# Note in the above: I added the states layer to the map in one function
 
 # Calculate the value at a given point:
 
@@ -135,7 +137,6 @@ zoom(tmin,col = rev(rainbow(100)))
 # Add the states again:
 
 map(us, add = T)
-
 
 #----------------------------------------------------------------------------
 # Cropping the raster
@@ -159,7 +160,6 @@ tmin_se = crop(tmin,e2)
 
 plot(tmin_se,col = rev(rainbow(100)), addfun = map(us, add= T))
 
-
 #----------------------------------------------------------------------------
 # Extracting data to points
 #============================================================================
@@ -177,7 +177,7 @@ crs(pts) = crs(tmin)
 
 points(pts, pch = 21, cex = .75, col = 1, bg = 'white')
 
-# You can extract at a given point location:
+# You can extract temperatures for each point:
 
 ext.1 = extract(tmin_se, pts)
 
@@ -193,7 +193,7 @@ head(pts)
 
 names(pts) = 'tmin'
 
-# Or within a given radius (in meters) around the points:
+# You can also extract the values of a raster within a given radius around each point:
 # Not run:
 # pts = extract(tmin_se, pts,buffer = 3000, sp = T, na.rm = T)
 
@@ -242,7 +242,7 @@ plot(tmin~y,data = pts,
 abline(mod, lwd = 2)
 
 #----------------------------------------------------------------------------
-# But you want to view the file more interactively?
+# But do you want to view the file more interactively?
 #============================================================================
 
 # There are lots of ways to explore maps interactively, one way that's fun
